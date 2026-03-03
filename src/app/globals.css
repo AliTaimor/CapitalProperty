@@ -1,15 +1,46 @@
+/* ─────────────────────────────────────────────
+   Tailwind Import (MUST be at top)
+───────────────────────────────────────────── */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─────────────────────────────────────────────
+   Theme Configuration (Tailwind v4)
+───────────────────────────────────────────── */
+@theme {
+  /* ── Brand Colors ── */
+  --color-brand-emerald: #0d3d2a;
+  --color-brand-emerald-dark: #082718;
+  --color-brand-emerald-mid: #145237;
+  --color-brand-emerald-light: #1a6644;
+
+  --color-brand-gold: #c9a96e;
+  --color-brand-gold-light: #dfc08a;
+  --color-brand-gold-dark: #a8843e;
+
+  /* ── Neutral System ── */
+  --color-neutral-light: #f8f5ef;
+  --color-neutral-cream: #ede9df;
+  --color-neutral-border: #e5e0d8;
+  --color-neutral-text: #1a1a1a;
+  --color-neutral-subtext: #6b6b6b;
+
+  /* ── Typography Variables (Controlled via layout.js) ── */
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-cormorant: var(--font-cormorant);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+}
+
+/* ─────────────────────────────────────────────
+   Root Variables
+───────────────────────────────────────────── */
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +50,123 @@
   }
 }
 
+/* ─────────────────────────────────────────────
+   Base Styles
+───────────────────────────────────────────── */
+* {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─────────────────────────────────────────────
+   Scrollbar Styling
+───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-gold);
+  border-radius: 3px;
+}
+
+/* ─────────────────────────────────────────────
+   Animations
+───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Utility Classes
+───────────────────────────────────────────── */
+.animate-fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-count-up {
+  animation: countUp 0.6s ease forwards;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-cormorant {
+  font-family: var(--font-cormorant);
+}
+
+.gold-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-brand-gold-dark),
+    var(--color-brand-gold-light)
+  );
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-brand-gold-dark) 0%,
+    var(--color-brand-gold-light) 50%,
+    var(--color-brand-gold-dark) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
 }
