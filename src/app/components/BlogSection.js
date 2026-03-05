@@ -54,21 +54,6 @@ export default function BlogSection() {
               Blog <span className="italic text-[#C9A96E]">& Insights</span>
             </h2>
           </div>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-[#0D3D2A] border-b border-[#C9A96E] pb-0.5 hover:text-[#C9A96E] transition-colors font-medium tracking-wide"
-          >
-            View All Posts
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </Link>
         </div>
 
         {/* Posts Grid */}

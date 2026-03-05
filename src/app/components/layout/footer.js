@@ -1,29 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-[#082718] text-white">
-      {/* Newsletter strip */}
-      <div className="bg-[#C9A96E]">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[#082718] font-semibold text-sm tracking-wide uppercase">
-            📬 Subscribe to Our Newsletter — Get exclusive property updates
-          </p>
-          <div className="flex w-full md:w-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="px-4 py-2.5 text-sm outline-none flex-1 md:w-64 bg-white text-[#333] placeholder-[#999]"
-            />
-            <button className="bg-[#082718] text-[#C9A96E] px-5 py-2.5 text-sm font-bold tracking-wider hover:bg-[#0D3D2A] transition-colors whitespace-nowrap">
-              SUBSCRIBE
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -113,14 +94,7 @@ export default function Footer() {
               <div className="w-4 h-px bg-[#C9A96E]" /> Our Projects
             </h4>
             <ul className="space-y-2.5">
-              {[
-                "Prestige Heights",
-                "Capital Gardens",
-                "Crown Residencia",
-                "Elite Enclave",
-                "Royal Villas",
-                "Capital Entertainment City",
-              ].map((link) => (
+              {["AlJalil Gardens", "Lahore Future City Plan"].map((link) => (
                 <li key={link}>
                   <Link
                     href="#"
@@ -140,45 +114,38 @@ export default function Footer() {
               <div className="w-4 h-px bg-[#C9A96E]" /> Connect With Us
             </h4>
             <ul className="space-y-2.5 mb-7">
-              {[
-                "Blog & Media",
-                "Feedback",
-                "Authorized Dealers",
-                "Our Policies",
-                "Contact Us",
-              ].map((link) => (
-                <li key={link}>
-                  <Link
-                    href="#"
-                    className="text-sm text-white/50 hover:text-[#C9A96E] transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="w-0 group-hover:w-3 h-px bg-[#C9A96E] transition-all duration-300" />
-                    {link}
-                  </Link>
-                </li>
-              ))}
+              {["Authorized Dealers", "Our Policies", "Contact Us"].map(
+                (link) => (
+                  <li key={link}>
+                    <Link
+                      href="#"
+                      className="text-sm text-white/50 hover:text-[#C9A96E] transition-colors flex items-center gap-2 group"
+                    >
+                      <span className="w-0 group-hover:w-3 h-px bg-[#C9A96E] transition-all duration-300" />
+                      {link}
+                    </Link>
+                  </li>
+                ),
+              )}
             </ul>
 
             <div className="flex items-center gap-3">
-              {[
-                { icon: Facebook, name: "Facebook", href: "#" },
-                { icon: Twitter, name: "Twitter", href: "#" },
-                { icon: Instagram, name: "Instagram", href: "#" },
-                { icon: Youtube, name: "YouTube", href: "#" },
-              ].map((social) => {
-                const Icon = social.icon;
+              {[{ icon: Instagram, name: "Instagram", href: "#" }].map(
+                (social) => {
+                  const Icon = social.icon;
 
-                return (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    title={social.name}
-                    className="w-9 h-9 border border-[#C9A96E]/25 flex items-center justify-center text-[#C9A96E]/60 hover:border-[#C9A96E] hover:text-[#C9A96E] hover:bg-[#C9A96E]/10 transition-all duration-300"
-                  >
-                    <Icon size={16} />
-                  </a>
-                );
-              })}
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      title={social.name}
+                      className="w-9 h-9 border border-[#C9A96E]/25 flex items-center justify-center text-[#C9A96E]/60 hover:border-[#C9A96E] hover:text-[#C9A96E] hover:bg-[#C9A96E]/10 transition-all duration-300"
+                    >
+                      <Icon size={16} />
+                    </a>
+                  );
+                },
+              )}
             </div>
           </div>
         </div>

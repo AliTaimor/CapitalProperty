@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Instagram } from "lucide-react";
 
 export default function ContactSection() {
   const [form, setForm] = useState({
@@ -53,20 +54,22 @@ export default function ContactSection() {
 
             {/* Social links */}
             <div className="flex items-center gap-4">
-              {[
-                { label: "Facebook", href: "#" },
-                { label: "Instagram", href: "#" },
-                { label: "YouTube", href: "#" },
-                { label: "Twitter", href: "#" },
-              ].map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  className="w-9 h-9 border border-[#C9A96E]/30 flex items-center justify-center text-[#C9A96E]/60 hover:border-[#C9A96E] hover:text-[#C9A96E] hover:bg-[#C9A96E]/10 transition-all duration-200 text-xs font-medium"
-                >
-                  {s.label.charAt(0)}
-                </a>
-              ))}
+              {[{ icon: Instagram, name: "Instagram", href: "#" }].map(
+                (social) => {
+                  const Icon = social.icon;
+
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      title={social.name}
+                      className="w-9 h-9 border border-[#C9A96E]/25 flex items-center justify-center text-[#C9A96E]/60 hover:border-[#C9A96E] hover:text-[#C9A96E] hover:bg-[#C9A96E]/10 transition-all duration-300"
+                    >
+                      <Icon size={16} />
+                    </a>
+                  );
+                },
+              )}
             </div>
           </div>
 

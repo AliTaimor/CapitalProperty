@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import ContactModal from "../ui/ContactModal";
 
 const navLinks = [
   { label: "About Us", href: "/about" },
@@ -9,11 +10,8 @@ const navLinks = [
     label: "Projects",
     href: "#",
     children: [
-      { label: "Prestige Heights", href: "/projects/prestige-heights" },
-      { label: "Capital Gardens", href: "/projects/capital-gardens" },
-      { label: "Crown Residencia", href: "/projects/crown-residencia" },
-      { label: "Elite Enclave", href: "/projects/elite-enclave" },
-      { label: "Royal Villas", href: "/projects/royal-villas" },
+      { label: "AlJalil Gardens", href: "/projects/prestige-heights" },
+      { label: "Lahore Future City Plan", href: "/projects/capital-gardens" },
     ],
   },
   {
@@ -22,8 +20,7 @@ const navLinks = [
     children: [
       { label: "Prestige Heights", href: "/payment/prestige-heights" },
       { label: "Capital Gardens", href: "/payment/capital-gardens" },
-      { label: "Crown Residencia", href: "/payment/crown-residencia" },
-      { label: "On Ground Plots", href: "/payment/on-ground" },
+      ,
     ],
   },
   {
@@ -37,12 +34,12 @@ const navLinks = [
     ],
   },
 ];
-
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [openMobileSub, setOpenMobileSub] = useState(null);
+  const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -71,7 +68,7 @@ export default function Navbar() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            {["facebook", "twitter", "instagram", "youtube"].map((s) => (
+            {["instagram"].map((s) => (
               <a
                 key={s}
                 href="#"
@@ -148,14 +145,14 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Contact CTA */}
+          {/* Contact CTA — opens modal */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              href="/contact"
-              className="bg-[#C9A96E] hover:bg-[#DFC08A] text-[#082718] text-sm px-5 py-2.5 font-semibold tracking-wider transition-colors duration-300"
+            <button
+              onClick={() => setContactOpen(true)}
+              className="bg-[#C9A96E] hover:bg-[#DFC08A] text-[#082718] text-sm px-5 py-2.5 font-semibold tracking-wider transition-colors duration-300 cursor-pointer"
             >
               CONTACT US
-            </Link>
+            </button>
           </div>
 
           {/* Mobile hamburger */}
@@ -229,16 +226,25 @@ export default function Navbar() {
               </div>
             ))}
             <div className="p-4">
-              <Link
-                href="/contact"
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  setContactOpen(true);
+                }}
                 className="block w-full text-center bg-[#C9A96E] text-[#082718] py-3 font-semibold text-sm tracking-wider"
               >
                 CONTACT US
-              </Link>
+              </button>
             </div>
           </div>
         )}
       </nav>
+
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={contactOpen}
+        onClose={() => setContactOpen(false)}
+      />
     </>
   );
 }

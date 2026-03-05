@@ -4,63 +4,21 @@ import Link from "next/link";
 const projects = [
   {
     id: 1,
-    name: "Prestige Heights",
-    location: "Lahore",
-    type: "Residential Society",
+    name: "AlJalil Garden",
+    location: "Sharaqpur Road Lahore ",
+    type: "Housing Scheme",
     tag: "LDA Approved",
-    image:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80",
+    image: "/images/Aljalil-garden1.jpeg",
     href: "/projects/prestige-heights",
   },
   {
     id: 2,
-    name: "Capital Gardens",
-    location: "Lahore West",
-    type: "Housing Scheme",
-    tag: "Featured",
-    image:
-      "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=700&q=80",
-    href: "/projects/capital-gardens",
-  },
-  {
-    id: 3,
-    name: "Crown Residencia",
-    location: "Sheikhupura",
-    type: "Luxury Residencia",
-    tag: "New Launch",
-    image:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80",
-    href: "/projects/crown-residencia",
-  },
-  {
-    id: 4,
-    name: "Elite Enclave",
+    name: "Lahore Future City Plan",
     location: "Lahore",
-    type: "Commercial Hub",
-    tag: "Selling Fast",
-    image:
-      "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=80",
-    href: "/projects/elite-enclave",
-  },
-  {
-    id: 5,
-    name: "Royal Villas",
-    location: "DHA Lahore",
-    type: "Premium Villas",
-    tag: "Exclusive",
-    image:
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=700&q=80",
-    href: "/projects/royal-villas",
-  },
-  {
-    id: 6,
-    name: "Capital Entertainment City",
-    location: "Lahore Ring Road",
-    type: "Entertainment & Retail",
-    tag: "Upcoming",
-    image:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700&q=80",
-    href: "/projects/entertainment-city",
+    type: "Residential Society",
+    tag: "Featured",
+    image: "/images/Lahore-future-city1.jpeg",
+    href: "/projects/capital-gardens",
   },
 ];
 
@@ -166,7 +124,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <Link
             href="/projects"
             className="inline-flex items-center gap-3 border-2 border-[#0D3D2A] text-[#0D3D2A] px-10 py-3.5 text-sm font-semibold tracking-widest uppercase hover:bg-[#0D3D2A] hover:text-[#C9A96E] transition-all duration-300"
@@ -182,7 +140,7 @@ export default function ProjectsSection() {
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );
