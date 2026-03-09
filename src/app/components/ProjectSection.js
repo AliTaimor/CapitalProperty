@@ -5,7 +5,7 @@ const projects = [
   {
     id: 1,
     name: "AlJalil Garden",
-    location: "Sharaqpur Road Lahore ",
+    location: "Sharaqpur Road, Lahore",
     type: "Housing Scheme",
     tag: "LDA Approved",
     image: "/images/Aljalil-garden1.jpeg",
@@ -13,8 +13,8 @@ const projects = [
   },
   {
     id: 2,
-    name: "Lahore Future City Plan",
-    location: "Lahore",
+    name: "Lahore Future City",
+    location: "Sharaqpur Road, Lahore",
     type: "Residential Society",
     tag: "Featured",
     image: "/images/Lahore-future-city1.jpeg",

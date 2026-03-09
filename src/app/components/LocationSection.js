@@ -1,4 +1,11 @@
 export default function LocationSection() {
+  const LAT = "31.597764";
+  const LNG = "74.213848";
+
+  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}&travelmode=driving`;
+
+  const embedUrl = `https://maps.google.com/maps?q=${LAT},${LNG}&z=16&output=embed`;
+
   return (
     <section className="py-20 md:py-28 bg-[#F8F5EF]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
@@ -23,29 +30,26 @@ export default function LocationSection() {
                 icon: "🏢",
                 title: "Head Office",
                 lines: [
-                  "Main Boulevard, Gulberg III",
-                  "Lahore, Punjab, Pakistan",
+                  "Al Jalil Garden, Opposite Faizpur Interchange,",
+                  "Sharaqpur Road, Lahore, Punjab, Pakistan",
                 ],
               },
               {
                 icon: "📞",
                 title: "Phone",
-                lines: ["+92-300-111-2222", "+92-42-111-333-444"],
+                lines: ["+92-3057338294"],
               },
               {
                 icon: "✉️",
                 title: "Email",
-                lines: [
-                  "info@thecapitalproperty.com",
-                  "sales@thecapitalproperty.com",
-                ],
+                lines: ["thecapitalproperty053@gmail.com"],
               },
               {
                 icon: "🕐",
                 title: "Office Hours",
                 lines: [
-                  "Mon – Sat: 9:00 AM – 6:00 PM",
-                  "Sunday: 10:00 AM – 3:00 PM",
+                  "Mon – Sun: 8:00 AM – 9:00 PM",
+                  "Service available 24/7",
                 ],
               },
             ].map((card) => (
@@ -70,17 +74,42 @@ export default function LocationSection() {
             ))}
           </div>
 
-          {/* Map embed */}
-          <div className="lg:col-span-2 min-h-[400px] rounded-sm overflow-hidden shadow-lg border border-[#E5E0D8]">
+          {/* Map embed — pinned via exact coordinates */}
+          <div className="lg:col-span-2 min-h-[400px] rounded-sm overflow-hidden shadow-lg border border-[#E5E0D8] relative group">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54378.484660282585!2d74.27149424614813!3d31.520369942694185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190483e58107d9%3A0xc23abe6ccc7e2462!2sGulberg%2C%20Lahore%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s"
+              src={embedUrl}
               width="100%"
               height="100%"
               style={{ minHeight: "420px", border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              title="Al Jalil Garden, Faizpur Interchange, Lahore"
             />
+
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-[#0D3D2A]/0 group-hover:bg-[#0D3D2A]/10 transition-all duration-300 pointer-events-none" />
+
+            {/* Open in Maps button — appears on hover */}
+            <a
+              href={directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-4 right-4 flex items-center gap-2 bg-[#0D3D2A] hover:bg-[#C9A96E] text-[#C9A96E] hover:text-[#082718] px-4 py-2.5 text-xs font-bold tracking-widest uppercase shadow-xl transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0"
+            >
+              <svg
+                className="w-3.5 h-3.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Get Directions
+            </a>
           </div>
         </div>
       </div>
