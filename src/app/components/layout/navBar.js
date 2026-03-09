@@ -5,7 +5,7 @@ import Image from "next/image";
 import ContactModal from "../ui/ContactModal";
 
 const navLinks = [
-  { label: "About Us", href: "/about" },
+  { label: "About Us", href: "/AboutUSPage" },
   {
     label: "Projects",
     href: "#",
