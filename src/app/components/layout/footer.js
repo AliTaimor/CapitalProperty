@@ -69,20 +69,20 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {[
-                "About Us",
-                "Our Projects",
-                "Payment Plans",
-                "Development Update",
-                "Gallery",
-                "Careers",
+                { label: "About Us", href: "/AboutUsPage" },
+                { label: "Our Projects", href: "/projects" },
+                { label: "Payment Plans", href: "/payment" },
+                { label: "Development Update", href: "/development" },
+                { label: "Gallery", href: "/gallery" },
+                { label: "Careers", href: "/careers" },
               ].map((link) => (
-                <li key={link}>
+                <li key={link.label}>
                   <Link
-                    href="#"
+                    href={link.href}
                     className="text-sm text-white/50 hover:text-[#C9A96E] transition-colors flex items-center gap-2 group"
                   >
                     <span className="w-0 group-hover:w-3 h-px bg-[#C9A96E] transition-all duration-300" />
-                    {link}
+                    {link.label}
                   </Link>
                 </li>
               ))}
