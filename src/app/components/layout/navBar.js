@@ -180,7 +180,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {mobileOpen && (
           <div className="lg:hidden bg-[#082718] border-t border-[#C9A96E]/20 max-h-[80vh] overflow-y-auto">
-            {navLinks.map((link) => (
+            {/* {navLinks.map((link) => (
               <div key={link.label}>
                 <button
                   onClick={() =>
@@ -203,6 +203,58 @@ export default function Navbar() {
                     </svg>
                   )}
                 </button>
+                {link.children &&
+                  link.children.length > 0 &&
+                  openMobileSub === link.label && (
+                    <div className="bg-[#0D3D2A]">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="block px-10 py-3 text-sm text-white/70 hover:text-[#C9A96E] border-b border-white/5"
+                        >
+                          — {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+              </div>
+            ))} */}
+
+            {navLinks.map((link) => (
+              <div key={link.label}>
+                {!link.children ? (
+                  // ✅ Direct link for items with no dropdown
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="w-full flex items-center px-6 py-3.5 text-white/90 hover:text-[#C9A96E] text-sm font-medium border-b border-white/5"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  // Dropdown button for items with children
+                  <button
+                    onClick={() =>
+                      setOpenMobileSub(
+                        openMobileSub === link.label ? null : link.label,
+                      )
+                    }
+                    className="w-full flex items-center justify-between px-6 py-3.5 text-white/90 hover:text-[#C9A96E] text-sm font-medium border-b border-white/5"
+                  >
+                    {link.label}
+                    <svg
+                      className={`w-4 h-4 transition-transform ${openMobileSub === link.label ? "rotate-180" : ""}`}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                )}
                 {link.children &&
                   link.children.length > 0 &&
                   openMobileSub === link.label && (
