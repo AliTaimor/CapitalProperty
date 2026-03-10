@@ -3,25 +3,24 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ContactModal from "../ui/ContactModal";
+import projects from "../../lib/projects";
 
-const navLinks = [
-  { label: "About Us", href: "/AboutUSPage" },
+const buildNavLinks = () => [
+  { label: "About Us", href: "/AboutUsPage" },
   {
     label: "Projects",
     href: "#",
-    children: [
-      { label: "AlJalil Gardens", href: "/projects/prestige-heights" },
-      { label: "Lahore Future City Plan", href: "/projects/capital-gardens" },
-    ],
+    children: projects.map((p) => ({
+      label: p.name,
+      href: `/projects/${p.slug}`,
+    })),
   },
   {
     label: "Payment Plan",
     href: "#",
-    children: [
-      { label: "Prestige Heights", href: "/payment/prestige-heights" },
-      { label: "Capital Gardens", href: "/payment/capital-gardens" },
-      ,
-    ],
+    children: projects
+      .filter((p) => p.paymentPlanHref)
+      .map((p) => ({ label: p.name, href: p.paymentPlanHref })),
   },
   {
     label: "More",
@@ -34,7 +33,9 @@ const navLinks = [
     ],
   },
 ];
+
 export default function Navbar() {
+  const navLinks = buildNavLinks();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -67,17 +68,12 @@ export default function Navbar() {
               thecapitalproperty053@gmail.com
             </span>
           </div>
-          <div className="flex items-center gap-4">
-            {["instagram"].map((s) => (
-              <a
-                key={s}
-                href="#"
-                className="hover:text-[#DFC08A] transition-colors capitalize text-[10px] tracking-wider"
-              >
-                {s.charAt(0).toUpperCase() + s.slice(1)}
-              </a>
-            ))}
-          </div>
+          <a
+            href="#"
+            className="hover:text-[#DFC08A] transition-colors text-[10px] tracking-wider"
+          >
+            Instagram
+          </a>
         </div>
       </div>
 
@@ -86,9 +82,8 @@ export default function Navbar() {
         className={`sticky top-0 z-50 transition-all duration-500 ${scrolled ? "bg-[#0D3D2A]/98 backdrop-blur-md shadow-lg py-2" : "bg-[#0D3D2A] py-3"}`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-brand-gold shadow-md">
+            <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-[#C9A96E] shadow-md">
               <Image
                 src="/images/Logo.png"
                 alt="The Capital Property"
@@ -103,7 +98,7 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <div
                 key={link.label}
-                className="relative nav-item group"
+                className="relative group"
                 onMouseEnter={() => setOpenDropdown(link.label)}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
@@ -112,7 +107,7 @@ export default function Navbar() {
                   className="flex items-center gap-1 px-4 py-2 text-sm text-white/90 hover:text-[#C9A96E] transition-colors duration-200 tracking-wide font-medium group-hover:text-[#C9A96E]"
                 >
                   {link.label}
-                  {link.children && (
+                  {link.children && link.children.length > 0 && (
                     <svg
                       className="w-3 h-3 mt-0.5 transition-transform group-hover:rotate-180"
                       fill="none"
@@ -124,29 +119,28 @@ export default function Navbar() {
                     </svg>
                   )}
                 </Link>
-                {/* Underline */}
                 <span className="absolute bottom-0 left-4 right-4 h-px bg-[#C9A96E] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
-                {/* Dropdown */}
-                {link.children && openDropdown === link.label && (
-                  <div className="absolute top-full left-0 min-w-[220px] bg-[#082718] border-t-2 border-[#C9A96E] shadow-2xl z-50 py-1">
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.label}
-                        href={child.href}
-                        className="block px-5 py-2.5 text-sm text-white/80 hover:text-[#C9A96E] hover:bg-[#0D3D2A] hover:pl-7 transition-all duration-200 border-b border-white/5"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                {link.children &&
+                  link.children.length > 0 &&
+                  openDropdown === link.label && (
+                    <div className="absolute top-full left-0 min-w-[220px] bg-[#082718] border-t-2 border-[#C9A96E] shadow-2xl z-50 py-1">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          className="block px-5 py-2.5 text-sm text-white/80 hover:text-[#C9A96E] hover:bg-[#0D3D2A] hover:pl-7 transition-all duration-200 border-b border-white/5 last:border-0"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
               </div>
             ))}
           </div>
 
-          {/* Contact CTA — opens modal */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center">
             <button
               onClick={() => setContactOpen(true)}
               className="bg-[#C9A96E] hover:bg-[#DFC08A] text-[#082718] text-sm px-5 py-2.5 font-semibold tracking-wider transition-colors duration-300 cursor-pointer"
@@ -155,7 +149,6 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden text-white p-2"
@@ -198,7 +191,7 @@ export default function Navbar() {
                   className="w-full flex items-center justify-between px-6 py-3.5 text-white/90 hover:text-[#C9A96E] text-sm font-medium border-b border-white/5"
                 >
                   {link.label}
-                  {link.children && (
+                  {link.children && link.children.length > 0 && (
                     <svg
                       className={`w-4 h-4 transition-transform ${openMobileSub === link.label ? "rotate-180" : ""}`}
                       fill="none"
@@ -210,19 +203,22 @@ export default function Navbar() {
                     </svg>
                   )}
                 </button>
-                {link.children && openMobileSub === link.label && (
-                  <div className="bg-[#0D3D2A]">
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.label}
-                        href={child.href}
-                        className="block px-10 py-3 text-sm text-white/70 hover:text-[#C9A96E] border-b border-white/5"
-                      >
-                        — {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                {link.children &&
+                  link.children.length > 0 &&
+                  openMobileSub === link.label && (
+                    <div className="bg-[#0D3D2A]">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="block px-10 py-3 text-sm text-white/70 hover:text-[#C9A96E] border-b border-white/5"
+                        >
+                          — {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
               </div>
             ))}
             <div className="p-4">
@@ -240,7 +236,6 @@ export default function Navbar() {
         )}
       </nav>
 
-      {/* Contact Modal */}
       <ContactModal
         isOpen={contactOpen}
         onClose={() => setContactOpen(false)}

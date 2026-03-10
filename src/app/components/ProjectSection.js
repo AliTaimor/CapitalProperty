@@ -1,27 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const projects = [
-  {
-    id: 1,
-    name: "AlJalil Garden",
-    location: "Sharaqpur Road, Lahore",
-    type: "Housing Scheme",
-    tag: "LDA Approved",
-    image: "/images/Aljalil-garden1.jpeg",
-    href: "/projects/prestige-heights",
-  },
-  {
-    id: 2,
-    name: "Lahore Future City",
-    location: "Sharaqpur Road, Lahore",
-    type: "Residential Society",
-    tag: "Featured",
-    image: "/images/Lahore-future-city1.jpeg",
-    href: "/projects/capital-gardens",
-  },
-];
-
 const tagColors = {
   "LDA Approved": "bg-[#0D3D2A] text-[#C9A96E]",
   Featured: "bg-[#C9A96E] text-[#082718]",
@@ -30,7 +9,33 @@ const tagColors = {
   Exclusive: "bg-[#082718] text-[#C9A96E]",
   Upcoming: "bg-[#555] text-white",
 };
-
+const projects = [
+  {
+    id: 1,
+    name: "AlJalil Garden",
+    slug: "aljalil-garden", // ✅ Add slug
+    location: "Sharaqpur Road, Lahore",
+    type: "Housing Scheme",
+    tag: "LDA Approved",
+    image: "/images/Aljalil-garden1.jpeg",
+    // href is now DYNAMIC - uses the slug from this object
+    get href() {
+      return `/projects/${this.slug}`;
+    },
+  },
+  {
+    id: 2,
+    name: "Lahore Future City",
+    slug: "lahore-future-city", // ✅ Add slug
+    location: "Sharaqpur Road, Lahore",
+    type: "Residential Society",
+    tag: "Featured",
+    image: "/images/Lahore-future-city1.jpeg",
+    get href() {
+      return `/projects/${this.slug}`;
+    },
+  },
+];
 export default function ProjectsSection() {
   return (
     <section className="py-20 md:py-28 bg-white">
