@@ -59,7 +59,7 @@ export default async function ProjectDetailPage({ params }) {
           </h1>
 
           {/* Location */}
-  
+
           <div className="flex items-center gap-2 text-white text-sm mt-2">
             <svg
               className="w-4 h-4 text-[#C9A96E]"
@@ -318,21 +318,21 @@ export default async function ProjectDetailPage({ params }) {
             <span className="italic text-[#C9A96E]">{project.shortName}</span>{" "}
             Today
           </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href={project.paymentPlanHref}
               className="bg-[#C9A96E] hover:bg-[#DFC08A] text-[#082718] px-8 py-3.5 text-sm font-bold tracking-widest uppercase transition-colors"
             >
               View Payment Plan
             </Link>
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* Simple Footer placeholder */}
       <footer className="bg-[#0D3D2A] text-white/50 py-8 text-center text-sm">
         <div className="max-w-7xl mx-auto px-6">
-          © 2024 The Capital Property. All rights reserved.
+          © 2026 The Capital Property. All rights reserved.
         </div>
       </footer>
     </div>
